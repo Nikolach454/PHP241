@@ -7,7 +7,7 @@
 </head>
 <body style="background-color: cadetblue;">
     <header style="display: flex; justify-content: space-between;">
-        <img src="./1000011505-photoaidcom-invert.jpg" alt="Лучший вуз в Политехе" style="width: 30%; height: 30%;">
+        <img src="../PHP/images/1000011505-photoaidcom-invert.jpg" alt="Лучший вуз в Политехе" style="width: 30%; height: 30%;">
         <h1>2.1.Домашняя работа: Hello, World! Время выполнения - 3 часа</h1>
     </header>
     <main>
