@@ -58,6 +58,10 @@
 </script>
 
 <?php
+
+
+
+
 echo "Млосердов Николай Сергеевич 241-321 Домашнее задание: уравнение.";
 echo "<BR>";
 session_start();
@@ -156,6 +160,36 @@ if (isset($_SESSION['history'])) {
     echo "<li>" . htmlspecialchars($expr) . "</li>";
   }
   echo "</ul>";
+}
+
+
+require_once '../hw5_Eval/index.php';
+
+if (file_exists(__DIR__ . '/../Task/expression.txt')) {
+  $expr = file_get_contents(__DIR__ . '/../Task/expression.txt');
+  $res = calculateTrigExpression($expr);
+  echo "<hr><b>Результат из файла expression.txt:</b> " . $res;
+
+}
+
+function calculateTrigExpression($expr) {
+  $expr = preg_replace('/\s+/', '', $expr);
+  $pattern = '/(sin|cos|tan|cot)\((\-?[0-9.]+)\)/i';
+  while (preg_match($pattern, $expr, $matches)) {
+    $func = $matches[1];
+    $val = $matches[2];
+    $result = computeTrig($func, $val);
+    if (!is_numeric($result)) return $result;
+    $expr = str_replace($matches[0], $result, $expr);
+  }
+
+  $expr = str_replace(['--', '++', '-+', '+-'], ['+', '+', '-', '-'], $expr);
+  try {
+    eval('$result = ' . $expr . ';');
+    return $result;
+  } catch (Throwable $e) {
+    return 'Ошибка в выражении!';
+  }
 }
 ?>
 </body>
