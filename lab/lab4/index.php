@@ -23,7 +23,7 @@ echo "Заданеие 16    На \b, \B Дана строка 'xbx aca aea abba
 echo "<BR>";
 
 
-$inputString = 'xbx aca aea abba adca abea';
+$inputString = 'xbx aca ae_a abba adca abea';
 
 $pattern = '/\b(\w+)\b/';
 $replacement = '!$1!';
