@@ -95,4 +95,17 @@ use src\Services\Db;
         $sql = 'DELETE FROM `'.static::getTableName().'` WHERE `id`=:id';
         $db->query($sql, [':id'=>$this->id], static::class);
     }
+
+
+
+
+    public static function findAllByColumn(string $column, $value): array
+    {
+        $db = Db::getInstance();
+        $sql = 'SELECT * FROM `' . static::getTableName() . '` WHERE `' . $column . '` = :value';
+        return $db->query($sql, [':value' => $value], static::class);
+    }
 }
+
+
+

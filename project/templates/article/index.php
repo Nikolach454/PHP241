@@ -10,13 +10,20 @@
     </tr>
   </thead>
   <tbody>
-    <?php foreach($articles as $article):?> 
+    <?php
+    $i=1;
+    foreach($articles as $article):?>
     <tr>
-      <th scope="row">1</th>
+      <th scope="row"><?php 
+      echo "$i";
+      $i++;
+
+      ?></th>
       <td><?=$article->getCreatedAt();?></td>
       <td><a href="<?=dirname($_SERVER['REQUEST_URI'])?>/article/<?=$article->getId();?>"><?=$article->getTitle();?></a></td>
       <td><?=$article->getText();?></td>
       <td><?=$article->getAuthorId()->getNickname();?></td>
+ 
     </tr>
     <?php endforeach;?>
   </tbody>

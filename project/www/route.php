@@ -10,4 +10,10 @@ return [
     '~^article/store$~'=>[src\Controllers\ArticleController::class, 'store'],
     '~hello/(.+)$~' => [src\Controllers\MainController::class, 'sayHello'],
     '~bye/(.+)$~' => [src\Controllers\MainController::class, 'sayBye'],
+
+
+'~^article/(\d+)/comments$~' => [src\Controllers\CommentController::class, 'store'],
+'~^comments/(\d+)/edit$~' => [src\Controllers\CommentController::class, 'edit'],
+'~^comments/(\d+)/update$~' => [src\Controllers\CommentController::class, 'update'],
+'~^comments/(\d+)/delete$~' => [src\Controllers\CommentController::class, 'delete'],
 ];

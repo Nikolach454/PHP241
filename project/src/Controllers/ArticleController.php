@@ -3,6 +3,7 @@
 namespace src\Controllers;
 use src\View\View;
 use src\Models\Articles\Article;
+use src\Models\Comments\Comment;
 
 class ArticleController
 {
@@ -25,7 +26,12 @@ class ArticleController
             $this->view->renderHtml('error/404', [], 404);
             return;
         }
-        $this->view->renderHtml('article/show', ['article'=>$article]);
+
+        $comments = Comment::findAllByColumn('article_id', $article->getId());
+        $this->view->renderHtml('article/show', [
+        'article' => $article,
+        'comments' => $comments
+        ]);
     }
 
     public function edit($id){
@@ -38,7 +44,7 @@ class ArticleController
         $article->title = $_POST['title'];
         $article->text = $_POST['text'];
         $article->save();
-        return header('Location:http://localhost/student-241/321/Project/www/article/'.$article->getId());
+        return header('Location:http://localhost/PHP/project/www/article/'.$article->getId());
     }
 
     public function create(){
@@ -51,12 +57,12 @@ class ArticleController
         $article->text = $_POST['text'];
         $article->authorId = 1;
         $article->save();
-        return header('Location:http://localhost/student-241/321/Project/www/index.php');
+        return header('Location:http://localhost/PHP/project/www/index.php');
     }
 
     public function delete(int $id){
         $article = Article::getById($id);
         $article->delete();
-        return header('Location:http://localhost/student-241/321/Project/www/index.php');
+        return header('Location:http://localhost/PHP/project/www/index.php');
     }
 }
