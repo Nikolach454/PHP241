@@ -22,7 +22,7 @@ class CommentController
         $comment->setArticleId($articleId);
         $comment->save();
 
-        header("Location: /article/{$articleId}#comment" . $comment->getId());
+        header("Location: /PHP/project/www/article/{$articleId}#comment" . $comment->getId());
     }
 
     public function edit(int $commentId): void
